@@ -26,7 +26,7 @@ db.then(()=>{
     });
     app.get('/api/img/:path',(req,res)=>{
         res.sendFile(__dirname+'/uploads/'+req.params.path)
-    }),
+    });
     app.post('/api/add_blog',multer.array('file'),async (request,res)=>{
         let {title,author,content,color}=request.body;
         let img_list=request.files.map((item)=>{
@@ -40,7 +40,11 @@ db.then(()=>{
         let {_id,title,content,color}=req.body;
         await blogmodel.updateOne({_id:_id},{title,content,color,edited_time:''});
         res.send('ok')
-    })
+    });
+    app.post('/api/delete/:path',async (req,res)=>{
+        await blogmodel.deleteOne({_id:req.params.path});
+        res.send('ok')
+    });
 
 }).catch((err)=>{
     console.log('数据库链接失败',err)
