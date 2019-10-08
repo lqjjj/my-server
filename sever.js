@@ -24,6 +24,10 @@ db.then(()=>{
         }
         res.send(result);
     });
+    app.get('/api/one',async (req,res)=>{
+        let result = await blogmodel.findOne({author:'小游'})
+        res.send(result);
+    });
     app.get('/api/img/:path',(req,res)=>{
         res.sendFile(__dirname+'/uploads/'+req.params.path)
     });
