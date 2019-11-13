@@ -2,7 +2,7 @@
 let mongoose= require('mongoose');
 mongoose.set('useCreateIndex',true);
 const DB_NAME='demo';
-const DB_URL='localhost:27017';
+const DB_URL='122.51.166.112:27017';
 
 module.exports=new Promise((resolve,reject)=>{
     mongoose.connect(`mongodb://${DB_URL}/${DB_NAME}`,{useNewUrlParser: true});
